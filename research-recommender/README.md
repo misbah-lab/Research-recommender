@@ -28,7 +28,7 @@ research-recommender/
 │   ├── index.html
 │   ├── package.json
 │   └── vite.config.js
-├── data/                 ← PUT YOUR DATASET HERE
+├── data/                
 │   └── (arxiv-metadata-oai-snapshot.json  OR  arxiv_data.csv)
 └── models/               ← Auto-created on first run
     └── (embeddings.npy, feedback.json)
@@ -98,6 +98,7 @@ Visit **http://localhost:5173** in your browser.
 3. **FAISS IndexFlatIP** does inner-product search (≡ cosine on normalized vectors) across all paper embeddings
 4. Top-N papers returned with **% match score** = cosine similarity × 100
 5. User can mark papers as relevant/not relevant → stored in `feedback.json`
+6. Users can download the papers of their wish.
 
 ---
 
