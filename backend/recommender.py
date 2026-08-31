@@ -252,10 +252,8 @@ class RecommendationEngine:
                 clean = pid.replace("abs-","").split("v")[0]
                 pdf_url = f"https://arxiv.org/pdf/{clean}"
             elif paper["source"] == "pubmed":
-                pdf_url = f"https://pubmed.ncbi.nlm.nih.gov/{pid.replace('pubmed-','')}/"
-            else:
-                pdf_url = f"https://www.semanticscholar.org/paper/{pid}"
-
+                pmid = pid.replace('pubmed-', '')
+                pdf_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/search/?query={pmid}"
             results.append({
                 "id": pid,
                 "title": paper["title"],

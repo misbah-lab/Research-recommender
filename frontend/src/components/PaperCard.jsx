@@ -95,7 +95,7 @@ export default function PaperCard({ paper, rank }) {
             <a href={pdfUrl} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
               style={{ background: 'var(--accent)', color: '#fff', fontWeight: 500 }}>
-              ↓ Download PDF
+              ↓ View / Download
             </a>
 
             <div className="flex-1" />
