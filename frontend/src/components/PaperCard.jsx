@@ -28,10 +28,7 @@ export default function PaperCard({ paper, rank }) {
   const [expanded, setExpanded] = useState(false)
   const [feedback, setFeedback] = useState(null)
 
-  // Strip "abs-" prefix → "abs-1707.08561v3" becomes "1707.08561v3"
-const cleanId = paper.id?.replace(/^abs-/, '').replace(/v\d+$/, '') || ''
-const pdfUrl = `https://arxiv.org/pdf/${cleanId}`
-
+  const pdfUrl = paper.pdf_url || `https://arxiv.org/pdf/${paper.id}`
   const cats = paper.categories?.split(' ').filter(Boolean).slice(0, 3) || []
 
   function sendFeedback(relevant) {
@@ -51,33 +48,36 @@ const pdfUrl = `https://arxiv.org/pdf/${cleanId}`
         </span>
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-4 mb-2">
-            <h3 className="font-display text-base font-bold leading-snug" style={{ color: 'var(--ink)' }}>
-              {paper.title}
-            </h3>
+          <div className="flex items-start justify-between gap-4 mb-1">
+            <div>
+              <h3 className="font-display text-base font-bold leading-snug" style={{ color: 'var(--ink)' }}>
+                {paper.title}
+              </h3>
+              {paper.year && (
+                <span className="font-mono text-sm font-semibold" style={{ color: 'var(--muted)' }}>
+                  {paper.year}
+                </span>
+              )}
+            </div>
             <ScoreRing score={Math.round(paper.match_score)} />
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 mb-3 text-sm" style={{ color: 'var(--muted)' }}>
-            <span className="font-mono text-xs">{cleanId}</span>
-{paper.year && (
-  <span className="font-mono text-xs px-2 py-0.5 rounded"
-    style={{ background: 'var(--highlight)', color: 'var(--ink)', border: '1px solid rgba(13,13,13,0.1)', fontWeight: 500 }}>
-    {paper.year}
-  </span>
-)}            {paper.authors && (
+          <div className="flex flex-wrap items-center gap-3 mb-3 mt-2 text-sm" style={{ color: 'var(--muted)' }}>
+            <span className="font-mono text-xs">{paper.id?.replace(/^abs-/, '').replace(/v\d+$/, '') || paper.id}</span>
+              {paper.authors && (
               <span className="truncate max-w-xs">· {paper.authors.slice(0, 80)}{paper.authors.length > 80 ? '…' : ''}</span>
             )}
           </div>
 
           {cats.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mb-3">
-              {cats.map(c => (
-                <span key={c} className="font-mono text-xs px-2 py-0.5 rounded"
-                  style={{ background: 'var(--highlight)', color: 'var(--accent)', border: '1px solid rgba(200,68,26,0.2)' }}>
-                  {c}
-                </span>
-              ))}
+              {cats.map((c, i) => (
+  <span key={`${c}-${i}`} className="font-mono text-xs px-2 py-0.5 rounded"
+    style={{ background: 'var(--highlight)', color: 'var(--accent)', border: '1px solid rgba(200,68,26,0.2)' }}>
+    {c}
+  </span>
+))}
+             
             </div>
           )}
 

@@ -50,6 +50,25 @@ export default function SearchPage({ setResults, setQuery, setLoading, loading }
       setLoading(false)
     }
   }
+  const domainLabels = {
+    'cs.AI': 'Artificial Intelligence',
+    'cs.LG': 'Machine Learning',
+    'cs.CV': 'Computer Vision',
+    'cs.CL': 'Natural Language Processing',
+    'cs.NE': 'Neural Networks',
+    'cs.RO': 'Robotics',
+    'cs.IR': 'Information Retrieval',
+    'stat.ML': 'Statistics / ML',
+    'math.OC': 'Optimization',
+    'quant-ph': 'Quantum Computing',
+    'q-bio': 'Biology',
+    'eess.IV': 'Image Processing',
+    'eess.SP': 'Signal Processing',
+    'econ.EM': 'Economics',
+    'Review': 'Review Articles',
+    'JournalArticle': 'Journal Article',
+    'Conference': 'Conference Paper',
+  }
 
   return (
     <main className="flex-1 flex flex-col items-center justify-center px-6 py-20">
@@ -106,7 +125,7 @@ export default function SearchPage({ setResults, setQuery, setLoading, loading }
               <select value={domain} onChange={e => setDomain(e.target.value)}
                 className="font-mono text-sm bg-transparent outline-none" style={{ color: 'var(--ink)' }}>
                 <option value="">All</option>
-                {domains.map(d => <option key={d} value={d}>{d}</option>)}
+                {domains.map(d => <option key={d} value={d}>{domainLabels[d] || d}</option>)}
               </select>
             </div>
           )}

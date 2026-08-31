@@ -14,7 +14,7 @@ export default function Header() {
       </div>
       <div className="flex items-center gap-2">
         <span className="font-mono text-xs px-2 py-1 rounded" style={{ background: 'var(--highlight)', color: 'var(--muted)' }}>
-          arXiv · Deep Learning
+          Semantic Scholar · PubMed · arXiv
         </span>
       </div>
     </header>
