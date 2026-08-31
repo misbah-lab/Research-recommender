@@ -23,7 +23,7 @@ export default function ResultsPage({ results, query, onBack, setResults, setLoa
     setLoading(true)
     setQuery(input.trim())
     try {
-      const res = await axios.post('/api/recommend', { query: input.trim(), top_n: topN })
+      const res = await axios.post('https://researchlens-backend-feuy.onrender.com/recommend', { query: input.trim(), top_n: topN })
       setResults(res.data)
     } catch (err) {
       alert('Search failed.')

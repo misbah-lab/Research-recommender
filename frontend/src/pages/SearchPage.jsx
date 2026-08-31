@@ -28,7 +28,7 @@ export default function SearchPage({ setResults, setQuery, setLoading, loading }
   }, [])
 
   useEffect(() => {
-    axios.get('/api/domains').then(r => setDomains(r.data.domains)).catch(() => {})
+    axios.get('https://researchlens-backend-feuy.onrender.com/domains').then(r => setDomains(r.data.domains)).catch(() => {})
   }, [])
 
   async function handleSearch(e) {
@@ -38,7 +38,7 @@ export default function SearchPage({ setResults, setQuery, setLoading, loading }
     setLoading(true)
     setQuery(input.trim())
     try {
-      const res = await axios.post('/api/recommend', {
+      const res = await axios.post('https://researchlens-backend-feuy.onrender.com/recommend', {
         query: input.trim(),
         top_n: topN,
         domain_filter: domain || null

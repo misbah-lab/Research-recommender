@@ -33,7 +33,7 @@ export default function PaperCard({ paper, rank }) {
 
   function sendFeedback(relevant) {
     setFeedback(relevant)
-    axios.post('/api/feedback', { paper_id: paper.id, relevant }).catch(() => {})
+    axios.post('https://researchlens-backend-feuy.onrender.com/feedback', { paper_id: paper.id, relevant }).catch(() => {})
   }
 
   return (
